@@ -10,13 +10,15 @@ This folder is the source of truth for the initial LooRadar product and technica
 4. [`03-privacy-security.md`](03-privacy-security.md) — anonymous identity model, location privacy, App Check, security rules, data minimization, and secret handling.
 5. [`04-mvp-scope.md`](04-mvp-scope.md) — MVP features, exclusions, primary screens, acceptance criteria, and initial success measures.
 6. [`05-phase-0-plan.md`](05-phase-0-plan.md) — concrete Phase 0 implementation requirements and definition of done.
-7. [`06-ui-ux-reference.md`](06-ui-ux-reference.md) — UI/UX-first build rules, screen flows, design direction, validation gates, and the checked-in mobile mockup.
+7. [`06-ui-ux-reference.md`](06-ui-ux-reference.md) — UI/UX-first build rules, screen flows, design direction, validation gates, and the canonical mobile mockup.
 
-## Visual reference
+## Canonical visual reference
 
-![LooRadar mobile UX reference](assets/looradar-mobile-ux-reference.svg)
+![LooRadar mobile UX reference](assets/looradar-mobile-ux-reference.png)
 
-The visual reference is part of the project source of truth. User-facing implementation should follow its hierarchy and interaction model unless an intentional design change is documented in the same pull request.
+`assets/looradar-mobile-ux-reference.png` is the canonical visual reference for user-facing implementation. The SVG remains a secondary lightweight reference only.
+
+User-facing implementation should follow the PNG's hierarchy, interaction model, and overall visual direction unless an intentional design change is documented in the same pull request.
 
 ## Current architectural decisions
 
