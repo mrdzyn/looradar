@@ -16,7 +16,20 @@ The app should not require users to provide:
 - password
 - social profile
 
-Anonymous Firebase UIDs are internal identifiers and must not be displayed publicly.
+Anonymous Firebase UIDs are pseudonymous internal identifiers. They must not be displayed publicly or stored in publicly readable documents.
+
+## Public/private identity separation
+
+Firestore Security Rules authorize access at the document level; they are not a field-redaction mechanism. A document that is readable by the public must therefore contain only fields that are safe to disclose.
+
+Required design:
+
+- public restroom and sanitized contribution documents contain no contributor UID;
+- ownership, moderation, and abuse-control metadata is stored in non-public documents/collections or handled in trusted server-side services;
+- public document IDs must not embed raw Firebase UIDs;
+- where ownership must be enforced by rules, validate against `request.auth.uid` and use deterministic private ownership records or a trusted server write path.
+
+See `02-data-model.md` for the public/private collection model.
 
 ## Location privacy
 
@@ -62,18 +75,30 @@ Use:
 
 Never rely exclusively on client-side validation.
 
+## App Check strategy
+
+Phase 0 must distinguish development/testing from production enforcement.
+
+- Development/emulators may use Firebase's supported debug provider/token workflow. Debug tokens are development credentials and must not be committed to the repository or exposed publicly.
+- Android production should use the supported Play Integrity App Check provider unless platform requirements change.
+- Apple production should prefer App Attest where supported, with DeviceCheck fallback where needed.
+- Production enforcement should only be enabled after legitimate release builds are verified to obtain valid App Check tokens, to avoid locking out the app.
+- Document provider configuration and rollout steps without committing provider secrets/tokens.
+
 ## Contribution controls
 
-Recommended controls:
+Required/recommended controls:
 
 - authenticated anonymous UID required for writes
-- one rating per UID per restroom
+- one active rating per UID per restroom, enforced by security rules/private deterministic ownership or trusted server code
+- never trust a client-supplied UID as proof of ownership
 - rate limits for submissions/reports/verifications
 - duplicate-location checks
 - maximum text lengths
 - reject invalid latitude/longitude values
 - constrain enum fields to known values
 - moderation state for potentially abusive content
+- prevent clients from directly mutating trusted aggregate/reputation fields
 
 High-risk operations should move to trusted server-side code if Firestore Rules cannot enforce the business rule safely.
 
@@ -106,23 +131,24 @@ When introduced:
 - compress images before upload
 - moderate before or shortly after publication
 - support reporting/removal
+- keep contributor ownership metadata private
 
 ## Public/private separation
 
-Public UI must never expose:
+Public UI and publicly readable documents must never expose:
 
 - contributor UID
-- moderation metadata
+- private moderation metadata
 - internal abuse scores
 - security logs
 
-## Secrets
+## Secrets and client configuration
 
-Do not commit unrestricted API keys or service-account credentials to GitHub.
+Do not commit service-account credentials, debug App Check tokens, signing credentials, or unrestricted API keys to GitHub.
 
-Google Maps client keys must be platform-restricted using Android package/SHA restrictions and iOS bundle restrictions.
+Firebase mobile client configuration is not equivalent to a service-account secret, but associated services still require appropriate Firebase Security Rules, App Check, and API restrictions.
 
-Backend credentials belong in managed secret/configuration systems.
+Google Maps client keys must be platform-restricted using Android package/SHA restrictions and iOS bundle restrictions. Backend credentials belong in managed secret/configuration systems.
 
 ## Privacy policy
 
