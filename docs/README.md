@@ -2,15 +2,18 @@
 
 This folder is the source of truth for the initial LooRadar product and technical foundation.
 
+For AI-assisted development, agents must read [`../AGENTS.md`](../AGENTS.md) first and then [`STATUS.md`](STATUS.md) for the current project state, active phase, blockers, and next action.
+
 ## Documents
 
-1. [`00-product-vision.md`](00-product-vision.md) — product problem, value proposition, global positioning, and product principles.
-2. [`01-architecture.md`](01-architecture.md) — Flutter/Firebase/Google Maps architecture, GIS strategy, cost controls, and scaling path.
-3. [`02-data-model.md`](02-data-model.md) — Firestore collections, restroom fields, ratings, verification, reports, and duplicate-handling guidance.
-4. [`03-privacy-security.md`](03-privacy-security.md) — anonymous identity model, location privacy, App Check, security rules, data minimization, and secret handling.
-5. [`04-mvp-scope.md`](04-mvp-scope.md) — MVP features, exclusions, primary screens, acceptance criteria, and initial success measures.
-6. [`05-phase-0-plan.md`](05-phase-0-plan.md) — concrete Phase 0 implementation requirements and definition of done.
-7. [`06-ui-ux-reference.md`](06-ui-ux-reference.md) — UI/UX-first build rules, screen flows, design direction, validation gates, and the canonical mobile mockup.
+1. [`STATUS.md`](STATUS.md) — current phase, completed work, active task, blockers, validation state, and cross-agent handoff.
+2. [`00-product-vision.md`](00-product-vision.md) — product problem, value proposition, global positioning, and product principles.
+3. [`01-architecture.md`](01-architecture.md) — Flutter/Firebase/Google Maps architecture, GIS strategy, cost controls, and scaling path.
+4. [`02-data-model.md`](02-data-model.md) — Firestore collections, restroom fields, ratings, verification, reports, and duplicate-handling guidance.
+5. [`03-privacy-security.md`](03-privacy-security.md) — anonymous identity model, location privacy, App Check, security rules, data minimization, and secret handling.
+6. [`04-mvp-scope.md`](04-mvp-scope.md) — MVP features, exclusions, primary screens, acceptance criteria, and initial success measures.
+7. [`05-phase-0-plan.md`](05-phase-0-plan.md) — concrete Phase 0 implementation requirements and definition of done.
+8. [`06-ui-ux-reference.md`](06-ui-ux-reference.md) — UI/UX-first build rules, screen flows, design direction, validation gates, and the canonical mobile mockup.
 
 ## Canonical visual reference
 
